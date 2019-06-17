@@ -66,3 +66,107 @@ You need to modify the below command for your version of ubuntu - see https://ap
 
 * Ubuntu 18.04 (Bionic)
 - `sudo add-apt-repository "deb https://apt.llvm.org/bionic/ llvm-toolchain-bionic 6.0 main"`
+- `sudo apt-get update`
+- `sudo apt-get install aptitude -y`
+- `sudo aptitude install -y -o Aptitude::ProblemResolver::SolutionCost='100*canceled-actions,200*removals' build-essential clang-6.0 libstdc++-7-dev git libboost-all-dev python-pip libssl-dev`
+- `sudo pip install cmake`
+- `export CC=clang-6.0`
+- `export CXX=clang++-6.0`
+- `git clone -b master --single-branch https://github.com/idjibril/WATT`
+- `cd WATT`
+- `mkdir build`
+- `cd build`
+- `cmake ..`
+- `make`
+
+The binaries will be in the `src` folder when you are complete.
+
+- `cd src`
+- `./WATT --version`
+
+##### Generic Linux
+
+Ensure you have the dependencies listed above.
+
+If you want to use clang, ensure you set the environment variables `CC` and `CXX`.
+See the ubuntu instructions for an example.
+
+- `git clone -b master --single-branch https://github.com/idjibril/WATT`
+- `cd WATT`
+- `mkdir build`
+- `cd build`
+- `cmake ..`
+- `make`
+
+The binaries will be in the `src` folder when you are complete.
+
+- `cd src`
+- `./WATT --version`
+
+#### OSX/Apple, using Clang
+
+##### Prerequisites
+
+- Install XCode and Developer Tools.
+
+##### Building
+
+- `which brew || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+- `brew install --force cmake boost llvm openssl`
+- `export CC=/usr/local/opt/llvm/bin/clang`
+- `export CXX=/usr/local/opt/llvm/bin/clang++`
+- `git clone -b master --single-branch https://github.com/idjibril/WATT`
+- `cd WATT`
+- `mkdir build`
+- `cd build`
+- `cmake ..`
+- `make`
+
+The binaries will be in the `src` folder when you are complete.
+
+- `cd src`
+- `./WATT --version`
+
+#### Windows
+
+##### Prerequisites
+
+You can build for 32-bit or 64-bit Windows. **If you're not sure, pick 64-bit.**
+
+- Install [Visual Studio 2017 Community Edition](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=Community&rel=15&page=inlineinstall)
+- When installing Visual Studio, it is **required** that you install **Desktop development with C++**
+- Install the latest version of Boost (currently Boost 1.68). Select the appropriate version for your system:
+  - [Boost 64-bit](https://bintray.com/boostorg/release/download_file?file_path=1.68.0%2Fbinaries%2Fboost_1_68_0-msvc-14.1-64.exe)
+  - [Boost 32-bit](https://bintray.com/boostorg/release/download_file?file_path=1.68.0%2Fbinaries%2Fboost_1_68_0-msvc-14.1-32.exe)
+- Install the latest full version of OpenSSL (currently OpenSSL 1.1.1b). Select the appropriate version for your system:
+  - [OpenSSL 64-bit](https://slproweb.com/download/Win64OpenSSL-1_1_1c.exe)
+  - [OpenSSL 32-bit](https://slproweb.com/download/Win32OpenSSL-1_1_1c.exe)
+
+##### Building
+
+For 64-bit:
+- From the start menu, open 'x64 Native Tools Command Prompt for vs2017'.
+- `cd <your_WATT_directory>`
+- `mkdir build`
+- `cd build`
+- `set PATH="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin";%PATH%`
+- `cmake -G "Visual Studio 15 2017 Win64" .. -DBOOST_ROOT=C:/local/boost_1_68_0`
+- `MSBuild WATT.sln /p:Configuration=Release /m`
+
+For 32-bit:
+- From the start menu, open 'x86 Native Tools Command Prompt for vs2017'.
+- `cd <your_WATT_directory>`
+- `mkdir build`
+- `cd build`
+- `set PATH="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin";%PATH%`
+- `cmake -G "Visual Studio 15 2017" .. -DBOOST_ROOT=C:/local/boost_1_68_0`
+- `MSBuild WATT.sln /p:Configuration=Release /p:Platform=Win32 /m`
+
+The binaries will be in the `src/Release` folder when you are complete.
+
+- `cd src`
+- `cd Release`
+- `WATT.exe --version`
+
+#### Thanks
+Cryptonote Developers, Bytecoin Developers, Monero Developers, Forknote Project, TurtleCoin Community
