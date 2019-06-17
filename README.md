@@ -66,4 +66,3 @@ You need to modify the below command for your version of ubuntu - see https://ap
 
 * Ubuntu 18.04 (Bionic)
 - `sudo add-apt-repository "deb https://apt.llvm.org/bionic/ llvm-toolchain-bionic 6.0 main"`
-/turtlecoin                                                                                                                                                                                     1,24          Top

@@ -1,6 +1,7 @@
 // Copyright (c) 2012-2017, The CryptoNote developers, The Bytecoin developers
 // Copyright (c) 2014-2018, The Monero Project
 // Copyright (c) 2018-2019, The TurtleCoin Developers
+// Copyright (c) 2019-2020, The WATT Developers
 //
 // Please see the included LICENSE file for more information.
 
@@ -21,7 +22,7 @@ const uint64_t DIFFICULTY_TARGET                             = 30; // seconds
 const uint32_t CRYPTONOTE_MAX_BLOCK_NUMBER                   = 500000000;
 const size_t   CRYPTONOTE_MAX_BLOCK_BLOB_SIZE                = 500000000;
 const size_t   CRYPTONOTE_MAX_TX_SIZE                        = 1000000000;
-const uint64_t CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX       = 3914525;
+const uint64_t CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX       = 10158; // "0x27ae"
 const uint32_t CRYPTONOTE_MINED_MONEY_UNLOCK_WINDOW          = 40;
 const uint64_t CRYPTONOTE_BLOCK_FUTURE_TIME_LIMIT            = 60 * 60 * 2;
 const uint64_t CRYPTONOTE_BLOCK_FUTURE_TIME_LIMIT_V3         = 3 * DIFFICULTY_TARGET;
@@ -44,7 +45,7 @@ const unsigned EMISSION_SPEED_FACTOR                         = 25;
 static_assert(EMISSION_SPEED_FACTOR <= 8 * sizeof(uint64_t), "Bad EMISSION_SPEED_FACTOR");
 
 /* Premine amount */
-const uint64_t GENESIS_BLOCK_REWARD                          = UINT64_C(0);
+const uint64_t GENESIS_BLOCK_REWARD                          = UINT64_C(10000000000000);
 
 /* How to generate a premine:
 
@@ -66,7 +67,7 @@ TurtleCoind --print-genesis-tx --genesis-block-reward-address TRTLv2Fyavy8CXG8BP
 * You should see your premine appear in the previously generated wallet.
 
 */
-const char     GENESIS_COINBASE_TX_HEX[]                     = "010a01ff000188f3b501029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd088071210142694232c5b04151d9e4c27d31ec7a68ea568b19488cfcb422659a07a0e44dd5";
+const char     GENESIS_COINBASE_TX_HEX[] = "012801ff000180c0caf384a302027b7b9789cf5b258d88a49974a214896467807afaa9b7338e1982f4a42ce0e472210121d0c668744fce2644c2075144ed62425fc793b6462a76bfaa1049bfeb212cc4";
 static_assert(sizeof(GENESIS_COINBASE_TX_HEX)/sizeof(*GENESIS_COINBASE_TX_HEX) != 1, "GENESIS_COINBASE_TX_HEX must not be empty.");
 
 /* This is the unix timestamp of the first "mined" block (technically block 2, not the genesis block)
@@ -210,7 +211,7 @@ const char     P2P_NET_DATA_FILENAME[]                       = "p2pstate.bin";
 const char     MINER_CONFIG_FILE_NAME[]                      = "miner_conf.json";
 } // parameters
 
-const char     CRYPTONOTE_NAME[]                             = "TurtleCoin";
+const char     CRYPTONOTE_NAME[]                             = "WATT";
 
 const uint8_t  TRANSACTION_VERSION_1                         =  1;
 const uint8_t  TRANSACTION_VERSION_2                         =  2;
@@ -229,8 +230,8 @@ const size_t   BLOCKS_IDS_SYNCHRONIZING_DEFAULT_COUNT        =  10000;  //by def
 const uint64_t BLOCKS_SYNCHRONIZING_DEFAULT_COUNT            =  100;    //by default, blocks count in blocks downloading
 const size_t   COMMAND_RPC_GET_BLOCKS_FAST_MAX_COUNT         =  1000;
 
-const int      P2P_DEFAULT_PORT                              =  11897;
-const int      RPC_DEFAULT_PORT                              =  11898;
+const int      P2P_DEFAULT_PORT                              =  11788;
+const int      RPC_DEFAULT_PORT                              =  11877;
 const int      SERVICE_DEFAULT_PORT                          =  8070;
 
 const size_t   P2P_LOCAL_WHITE_PEERLIST_LIMIT                =  1000;
@@ -265,17 +266,23 @@ const uint64_t DATABASE_READ_BUFFER_MB_DEFAULT_SIZE          = 1024;          //
 const uint32_t DATABASE_DEFAULT_MAX_OPEN_FILES               = 500;           // 500 files
 const uint16_t DATABASE_DEFAULT_BACKGROUND_THREADS_COUNT     = 10;            // 10 DB threads
 
-const char     LATEST_VERSION_URL[]                          = "http://latest.turtlecoin.lol";
-const std::string LICENSE_URL                                = "https://github.com/turtlecoin/turtlecoin/blob/master/LICENSE";
+const char     LATEST_VERSION_URL[]                          = "http://latest.watt.cash";
+const std::string LICENSE_URL                                = "https://github.com/idjibril/watt/blob/master/LICENSE";
 const static   boost::uuids::uuid CRYPTONOTE_NETWORK         =
 {
-    {  0xb5, 0x0c, 0x4a, 0x6c, 0xcf, 0x52, 0x57, 0x41, 0x65, 0xf9, 0x91, 0xa4, 0xb6, 0xc1, 0x43, 0xe9  }
+   {  0xb1, 0x1c, 0x7a, 0x6c, 0xcf, 0x88, 0x87, 0x41, 0x65, 0xf9, 0x91, 0xa4, 0xb1, 0xc1, 0x78, 0xe8  } 
 };
 
 const char* const SEED_NODES[] = {
-  "206.189.142.142:11897",//rock
-  "145.239.88.119:11999", //cision
-  "142.44.242.106:11897", //tom
-  "165.227.252.132:11897" //iburnmycd
+  "watt.cash:11788",//MainNode
+  "seedwatt.duckdns.org:11788",//red0
+  "mainseednode.duckdns.org:11788",// red1
+  "mainnode.duckdns.org:11788",//red2
+  "seed-node.duckdns.org:11788",//red3
+  "seednode.bounceme.net:11788",//red4
+  "seednode.redirectme.net:11788", //red5
+  "seednodes.duckdns.org:11788",//red6
+  "seed-node.duckdns.org:11788",//red7
+  "mainseednode.duckdns.org:11788"//red8
 };
 } // CryptoNote
